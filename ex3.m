@@ -53,7 +53,12 @@ pause;
 
 fprintf('\nTraining One-vs-All Logistic Regression...\n')
 
-lambda = 10;
+lambda = 110;
+%[X_norm, mu, sigma] = featureNormalize(X);
+[U, S] = pca(X);
+Ureduce=U(:,1:k);
+X=X*Ureduce;
+
 [all_theta] = oneVsAll(X, y, num_labels, lambda);
 
 fprintf('Program paused. Press enter to continue.\n');
